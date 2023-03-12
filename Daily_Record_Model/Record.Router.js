@@ -10,11 +10,12 @@ dailyRecord.use(express.json())
 
 dailyRecord.post("/", async(req, res)=>{
 
-    const{SuppCode,PartNumber,PartName,Material,Discription,MOC,Unit,Total}=req.body;
+    const{SuppCode,PartNumber,PartName,Material,Discription,MOC,Unit,Total, S_No}=req.body;
 
     try{
         
            const recordItem = await Record.create({
+            S_No:S_No,
             SuppCode:SuppCode,
             PartNumber:PartNumber,
             PartName:PartName,
@@ -49,18 +50,34 @@ dailyRecord.get("/", async(req, res)=>{
 })
 
 
-// dailyRecord.post("/cal", async(req, res)=>{
-//     const{}
-//     try{
-//         const data= await Record.find()
+dailyRecord.put("/cal", async(req, res)=>{
+    const{mm100,mm150,mm180,mm200,mm225,mm240}=req.body
+    try{
+        const data= await Record.find()
         
+        data.map( async (e) =>{
+            console.log("id",e._id)
+            // console.log("MOC",e.MOC)
 
-//         res.send(data)
-//     } catch(err){
-//         return res.status(500).send(err)
-//     }
+            const AddData= await Record.findByIdAndUpdate(
+                {_id:e._id},
+                {
+                    C_L100:mm100*(e.MOC) 
+                },
+                {
+                    new:true
+                })
+console.log("AddData",AddData)
+        })
+
+
+
+        res.send(data)
+    } catch(err){
+        return res.status(500).send(err)
+    }
     
-// })
+})
 
 
 module.exports=dailyRecord
