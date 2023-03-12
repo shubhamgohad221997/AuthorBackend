@@ -10,14 +10,16 @@ const DailyRecord=new mongoose.Schema({
     MOC:{type:Number, required:true},
     Unit:{type:String, required:true},
     Total:{type:Number, required:true},
-    C_L100:{type:String, required:false},
-    C_L150:{type:String, required:false},
-    C_L180:{type:String, required:false},
-    C_L200:{type:String, required:false},
-    C_L225:{type:String, required:false},
-    C_L240:{type:String, required:false},
-    Remaining:{type:String, required:false},
+    C_L100:{type:Number, required:false},
+    C_L150:{type:Number, required:false},
+    C_L180:{type:Number, required:false},
+    C_L200:{type:Number, required:false},
+    C_L225:{type:Number, required:false},
+    C_L240:{type:Number, required:false},
+    Remaining:{type:Number, required:false},
 
+},{
+    versionKey:false
 })
 
 const Records = mongoose.model("DailyRecords", DailyRecord )

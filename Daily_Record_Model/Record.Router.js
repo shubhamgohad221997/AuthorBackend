@@ -58,11 +58,20 @@ dailyRecord.put("/cal", async(req, res)=>{
         data.map( async (e) =>{
             console.log("id",e._id)
             // console.log("MOC",e.MOC)
-
+console.log("Total",e.Total)
+let bag=e.C_L100+e.C_L150+e.C_L180+e.C_L200+e.C_L225+e.C_L240
+console.log("usePart",bag)
             const AddData= await Record.findByIdAndUpdate(
                 {_id:e._id},
                 {
-                    C_L100:mm100*(e.MOC) 
+                    C_L100:mm100*(e.MOC) ,
+                    
+                    C_L150:mm150*(e.MOC),
+                    C_L180:mm180*(e.MOC),
+                    C_L200:mm200*(e.MOC),
+                    C_L225:mm225*(e.MOC),
+                    C_L240:mm240*(e.MOC),
+
                 },
                 {
                     new:true
