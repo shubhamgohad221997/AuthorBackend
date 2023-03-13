@@ -4,10 +4,12 @@ const connect = require("./Connect/Connect");
 const Author = require("./AuthorModel/Author.Router");
 const book = require("./BookModel/Book.Router");
 const dailyRecord = require("./Daily_Record_Model/Record.Router");
+const cors=require("cors")
 // connect=require("./Connect/Connect")
 
 const PORT= process.env.PORT || 8080;
 const server=express()
+server.use(cors())
 mongoose.set('strictQuery', false)
 server.use(express.json())
 server.get("/",(req,res)=>{
